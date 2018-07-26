@@ -1,0 +1,5 @@
+.messages
+    each type in Object.keys(messages)
+        each message in messages[type]
+            span(class="badge badge-"+type) #{message}
+                i.fa.fa-times(onclick="fadeOut()")

@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    div(class="col-lg-8 offset-lg-2 col-md-10 offset-md-1")
+        if user
+            if user.id == article.author
+                a(class="btn btn-secondary mr-1" href=`/article/edit/${article._id}?title=${article.title}&author=${author}`) Edit
+                a(class="btn btn-danger delete" href="#" data-id=article._id) Delete
+        h4.mt-3= article.title
+        p Written By #{author}
+        p.text-muted Created at #{article.created_at}
+        hr
+        p.article-body= article.body

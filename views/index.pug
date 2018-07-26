@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    h2.text-center.display-4.mb-5 #{title}
+    
+    .row
+        each article in articles
+            .col-sm-12.col-md-4.article.mt-3
+                .card
+                    a(href=`/article/${article.title}?id=${article.author}`)
+                        img.card-img-top(src=article.image, alt='Article Image')
+                    .card-body
+                        h5.card-title #{article.title}
+                        p.card-text #{article.body}
+                    .card-body
+                        a(href=`/article/${article.title}?id=${article.author}` class="btn btn-dark") See more
+                    .card-footer
+                        small.text-muted #{article.created_at}

@@ -1,0 +1,53 @@
+extends layout
+
+block content
+    h2.text-center.display-4 Register
+    br
+    .form-box(class="col-lg-6 offset-lg-3 col-md-8 offset-md-2")
+        form(method="POST" action="/user/register")
+            .form-row
+                .col-md-12.mb-3
+                    label(for="name") Your Name
+                    input#name(type="text" name="name" class="form-control" placeholder="Your name" value=name)
+                if errors
+                    each error in errors
+                        if (error.param == 'name')
+                            .message
+                                p #{error.msg}
+                .col-md-12.mb-3
+                    label(for="username") Username
+                    input#username(type="text" name="username" class="form-control" placeholder="Your username" value=username)
+                if errors
+                    each error in errors
+                        if (error.param == 'username')
+                            .message
+                                p #{error.msg}
+                .col-md-12.mb-3
+                    label(for="email") Email
+                    input#email(type="text" name="email" class="form-control" placeholder="Your email" value=email)
+                    
+                if errors
+                    each error in errors
+                        if (error.param == 'email')
+                            .message
+                                p #{error.msg}
+                .col-md-12.mb-3
+                    label(for="password") Password
+                    input#password(type="password" name="password" placeholder="Your password" class="form-control")
+                if errors
+                    each error in errors
+                        if (error.param == 'password')
+                            .message
+                                p #{error.msg}
+                .col-md-12.mb-3
+                    label(for="password2") Confirm Password
+                    input#password2(type="password" name="password2" placeholder="Confirm your password" class="form-control")
+                if errors
+                    each error in errors
+                        if (error.param == 'password2')
+                            .message
+                                p #{error.msg}
+            .btn-div.mt-3
+                button(type="submit" class="btn btn-primary btn-lg") Submit 
+                    i.fas.fa-paper-plane
+block scripts

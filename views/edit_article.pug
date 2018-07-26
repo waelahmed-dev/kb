@@ -1,0 +1,38 @@
+extends layout
+
+block scripts
+    script(src="https://cloud.tinymce.com/stable/tinymce.min.js")
+    script(src="/assets/js/text_editor.js" type="text/javascript")
+
+block content
+    h2.text-center.display-4 #{title}
+    form(method="POST" action="/article/edit/" + article._id enctype="multipart/form-data" class="col-md-10 offset-md-1 mt-5")
+        .form-row
+            .col-12.mb-3
+                label(for="title") Title
+                input#title(type="text" name="title" class="form-control" placeholder="Write your article's title" value= article.title)
+            if errors
+                each error in errors
+                    if (error.param == 'title')
+                        .message
+                            p #{error.msg}
+            .col-12.mt-3.mb-3
+                textarea#editor(name="body") #{article.body}
+            if errors
+                each error in errors
+                    if (error.param == 'body')
+                        .message
+                            p #{error.msg}
+            button(class="btn btn-secondary file-upload")
+                span.upload-text Upload image
+                i.fas.fa-cloud-download-alt
+                input#image(type="file" name="image" class="upload")
+            span(id="fileuploadurl") Maximum image size is 10MB
+            if errors
+                each error in errors
+                    if (error.param == 'image')
+                        .message
+                            p #{error.msg}
+        .btn-div.mt-5
+            button(type="submit" class="btn btn-primary btn-lg") Submit 
+                i.fas.fa-paper-plane

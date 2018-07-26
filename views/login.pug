@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    .message #{message}
+    h2.text-center.display-4 Login
+    br
+    .form-box(class="col-lg-6 offset-lg-3 col-md-8 offset-md-2")
+        form(method="POST" action="/user/login")
+            .form-row
+                .col-md-12.mb-3
+                    label(for="email") Email
+                    input#email(type="text" name="email" class="form-control" placeholder="Your email" value=email)
+                if errors
+                    each error in errors
+                        if (error.param == 'email')
+                            .message
+                                p #{error.msg}
+                .col-md-12.mb-3
+                    label(for="password") Password
+                    input#password(type="password" name="password" placeholder="Your password" class="form-control")
+                if errors
+                    each error in errors
+                        if (error.param == 'password')
+                            .message
+                                p #{error.msg}
+            .btn-div.mt-3
+                button(type="submit" class="btn btn-primary") Login 
+                    i.fas.fa-paper-plane
+            h5.or Or
+            .social-btn(style='margin-top:30px;')
+                a(href="/user/google" class="login-btn google waves-effect waves-light") Login with Google
+            .social-btn
+                a(href="/user/facebook" class="login-btn facebook waves-effect waves-light") Login with Facebook

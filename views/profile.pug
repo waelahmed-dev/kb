@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    br
+    if (articles.length !== 0)
+        .row
+            each article in articles
+                .col-sm-12.col-md-4.article
+                    .card
+                        a(href=`/article/${article.title}?id=${article.author}`)
+                            img.card-img-top(src=article.image, alt='Card image cap')
+                        .card-body
+                            h5.card-title #{article.title}
+                            p.card-text #{article.body}
+                        .card-body
+                            a(href=`/article/${article.title}?id=${article.author}` class="btn btn-dark") See more
+                        .card-footer
+                            small.text-muted #{article.created_at}
+    else
+        h2.text-center.display-4 You haven't add any article yet
+block scripts
