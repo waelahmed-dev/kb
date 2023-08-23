@@ -1,1 +1,4 @@
-<style>@keyframes slidein {}</style>
+<style>
+@keyframes slidein {}
+xss {animation-duration:1s;animation-name:slidein;animation-iteration-count:2}
+</style>
